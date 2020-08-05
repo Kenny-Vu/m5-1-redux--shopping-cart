@@ -17,7 +17,7 @@ const Cart = () => {
         return <CartItem item={item} />;
       })}
       <Total>Total: 0$</Total>
-      <Purchase onClick={() => console.log("quack!")}>Purchase</Purchase>
+      <Purchase>Purchase</Purchase>
     </Sidebar>
   );
 };

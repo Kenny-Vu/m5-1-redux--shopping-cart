@@ -1,15 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
 import { MdRemoveCircleOutline } from "react-icons/md";
+import { removeItem } from "../../action";
 
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
   console.log(item);
+
   return (
     <ItemInfo>
       <li>
         <div>
           <h3>{item.title}</h3>
-          <Remove>
+          <Remove
+            onClick={() =>
+              dispatch(
+                removeItem({
+                  id: item.id,
+                  title: item.title,
+                  price: item.price,
+                })
+              )
+            }
+          >
             <MdRemoveCircleOutline />
           </Remove>
         </div>
