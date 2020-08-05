@@ -1,8 +1,8 @@
-const initial state = {};
+const initialState = {};
 
-export default function cartReducer(state = initialState,action) {
-    switch(action.type) {
+export default function cartReducer(state = initialState, action) {
+  switch (action.type) {
     default:
-        return state;
-    }
+      return state;
+  }
 }
