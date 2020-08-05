@@ -351,19 +351,19 @@ Wire in the action and dispatch it.
 ---
 
 ```js
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { pokeUser } from "../actions";
 
 const OnlineUsers = () => {
-  // TODO: Something missing here...
-
+  const dispatch = useDispatch();
+  const
   const onlineUsers = useSelector((state) => {
     return state.users.filter((user) => user.online);
   });
 
   return onlineUsers.map((user) => (
     <div key={user.name}>
-      <button onClick={/* TODO */}>Message {user.name}</button>
+      <button onClick={() => dispatch(pokeUser(user.name))}>Message {user.name}</button>
     </div>
   ));
 };
@@ -382,7 +382,7 @@ const FridgeForm = () => {
   return (
     <form
       onSubmit={() => {
-        /* TODO */
+        dispatch(addItemToFridge(value)); //careful of stateful component cannot pass ev.target.value directly
       }}
     >
       <input type="text" onChange={(ev) => setValue(ev.target.value)} />
@@ -404,8 +404,9 @@ const Modal = () => {
 
   React.useEffect(() => {
     const handleKeydown = (ev) => {
-      // TODO: Close modal when 'Escape' is pressed
-      // (Hint: use ev.key)
+      if (ev.key === "Escape") {
+        dispatch(dismissModal());
+      }
     };
 
     window.addEventListener("keydown", handleKeydown);
