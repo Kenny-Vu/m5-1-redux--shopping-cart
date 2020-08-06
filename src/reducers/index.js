@@ -1,13 +1,11 @@
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
-  console.log(action);
-  console.log(state);
   const stateCopy = { ...state };
   switch (action.type) {
     case "ADD_ITEM": {
       if (stateCopy[`${action.item.id}`]) {
-        const itemQuantity = stateCopy[`${action.item.id}`].quantity;
+        const itemQuantity = Number(stateCopy[`${action.item.id}`].quantity);
         return {
           ...state,
           [action.item.id]: {
@@ -32,12 +30,10 @@ export default function cartReducer(state = initialState, action) {
       };
     }
     case "UPDATE_QUANTITY": {
-      const newPrice = action.item.price * action.quantity;
       return {
         ...state,
         [action.item.id]: {
           ...action.item,
-          price: newPrice,
           quantity: action.quantity,
         },
       };
@@ -51,8 +47,8 @@ export const getStoreItemArray = (state) => Object.values(state);
 
 export const getCartTotal = (stateArray) => {
   let total = 0;
-  stateArray.forEach((item) => (total += item.price));
-  return total;
+  stateArray.forEach((item) => (total += Number(item.price) * item.quantity));
+  return total / 100;
 };
 
 export const getItemTotalAmount = (stateArray) => {

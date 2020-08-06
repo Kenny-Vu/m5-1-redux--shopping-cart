@@ -31,6 +31,7 @@ const CartItem = ({ item }) => {
           <label>Quantity</label>
           <Quantity
             type="number"
+            value={item.quantity}
             onChange={(event) =>
               dispatch(updateQuantity(item, event.target.value))
             }
