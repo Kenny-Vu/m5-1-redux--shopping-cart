@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 import { MdRemoveCircleOutline } from "react-icons/md";
-import { removeItem } from "../../action";
+import { removeItem, updateQuantity } from "../../action";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
-  console.log(item);
 
   return (
     <ItemInfo>
@@ -30,7 +29,12 @@ const CartItem = ({ item }) => {
         </div>
         <div>
           <label>Quantity</label>
-          <Quantity type="number" />
+          <Quantity
+            type="number"
+            onChange={(event) =>
+              dispatch(updateQuantity(item, event.target.value))
+            }
+          />
         </div>
       </li>
     </ItemInfo>

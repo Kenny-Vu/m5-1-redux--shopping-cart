@@ -9,3 +9,11 @@ export const removeItem = (item) => {
     item,
   };
 };
+
+export const updateQuantity = (item, quantity) => {
+  return {
+    type: "UPDATE_QUANTITY",
+    item,
+    quantity,
+  };
+};

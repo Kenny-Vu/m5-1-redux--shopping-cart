@@ -3,20 +3,23 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 //import from local files
-import { getStoreItemArray } from "../../reducers";
+import {
+  getStoreItemArray,
+  getItemTotalAmount,
+  getCartTotal,
+} from "../../reducers";
 import CartItem from "./CartItem";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
-
   return (
     <Sidebar>
       <h2>Your Cart</h2>
-      <span>1 item</span>
+      <span>{getItemTotalAmount(storeItems)} items</span>
       {storeItems.map((item) => {
         return <CartItem item={item} />;
       })}
-      <Total>Total: 0$</Total>
+      <Total>Total: {getCartTotal(storeItems)}$</Total>
       <Purchase>Purchase</Purchase>
     </Sidebar>
   );
